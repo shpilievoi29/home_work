@@ -1,0 +1,229 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.2
+-- Dumped by pg_dump version 13.2
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: actor; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.actor (
+    actor_id integer DEFAULT 0 NOT NULL,
+    actor character varying(100) DEFAULT 'unknown'::character varying NOT NULL,
+    film character varying(100) DEFAULT 'unknown'::character varying NOT NULL
+);
+
+
+ALTER TABLE public.actor OWNER TO postgres;
+
+--
+-- Name: editor; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.editor (
+    editor_id integer DEFAULT 0 NOT NULL,
+    editor character varying(100) DEFAULT 'unknown'::character varying NOT NULL,
+    name_film character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.editor OWNER TO postgres;
+
+--
+-- Name: film; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.film (
+    id integer NOT NULL,
+    name_film text NOT NULL,
+    editor text NOT NULL,
+    genre character varying,
+    year integer,
+    duration integer,
+    country character varying
+);
+
+
+ALTER TABLE public.film OWNER TO postgres;
+
+--
+-- Name: film_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.film_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.film_id_seq OWNER TO postgres;
+
+--
+-- Name: film_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.film_id_seq OWNED BY public.film.id;
+
+
+--
+-- Name: films; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.films (
+    id integer NOT NULL,
+    name text NOT NULL
+);
+
+
+ALTER TABLE public.films OWNER TO postgres;
+
+--
+-- Name: films_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.films_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.films_id_seq OWNER TO postgres;
+
+--
+-- Name: films_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.films_id_seq OWNED BY public.films.id;
+
+
+--
+-- Name: film id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.film ALTER COLUMN id SET DEFAULT nextval('public.film_id_seq'::regclass);
+
+
+--
+-- Name: films id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.films ALTER COLUMN id SET DEFAULT nextval('public.films_id_seq'::regclass);
+
+
+--
+-- Data for Name: actor; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.actor (actor_id, actor, film) FROM stdin;
+1	Yuriy Nikulin	Brilliant hand
+2	Georgy Vitsyn	Brilliant hand
+3	Eugeniy Morgunov	Brilliant hand
+4	Alexander Demyanenko	Brilliant hand
+5	Nataly Varley	Brilliant hand
+6	Brad Pitt	Snatch
+7	Jason Statham	Snatch
+8	Benicio del Toro	Snatch
+9	Marlon Brando	Apocalypse Now
+10	Martin Sheen	Apocalypse Now
+11	Larry Fishburne	Apocalypse Now
+12	Dennis Hopper	Apocalypse Now
+13	Leonardo DiCaprio	The Revenant
+14	Tom Hardy	The Revenant
+15	Domhnall Gleeson	The Revenant
+16	Leonardo DiCaprio	Titanic
+17	Kate Winslet	Titanic
+18	Billy Zane	Titanic
+19	Kathy Bates	Titanic
+20	Michael J. Fox	Back to the Future
+21	Bob Gale	Back to the Future
+22	Christopher Lloyd	Back to the Future
+23	Victor Andriyenko	Treasure Island
+24	Valery Chegliaev	Treasure Island
+\.
+
+
+--
+-- Data for Name: editor; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.editor (editor_id, editor, name_film) FROM stdin;
+1	Gayday	Brilliant hand
+2	Ritchie	Snatch
+3	Francis Ford Coppola	Apocalypse Now
+4	The Revenant	Gonzalez
+5	Titanic	Cameron
+7	 Robert Lee Zemeckis	Back to the Future
+8	David Cherkassky	Treasure Island
+\.
+
+
+--
+-- Data for Name: film; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.film (id, name_film, editor, genre, year, duration, country) FROM stdin;
+9	Brilliant hand	Gayday	comedy	1968	100	USSR
+8	Snatch	Ritchie	criminal	2000	102	Great Britain
+25	Apocalypse Now	Francis Ford Coppola	drama	1979	202	USA
+2	The Revenant	Gonzalez	adventures	2015	156	USA
+7	Titanic	Cameron	drama	1997	195	USA
+10	Back to the Future	Robert Lee Zemeckis	fantasy	1985	116	USA
+14	Treasure Island	David Cherkassky	adventures	1988	107	USSR
+\.
+
+
+--
+-- Data for Name: films; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.films (id, name) FROM stdin;
+1	Snatch
+2	Titanic
+3	God father
+4	Titanic
+5	In her eyes
+6	Super 8
+\.
+
+
+--
+-- Name: film_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.film_id_seq', 26, true);
+
+
+--
+-- Name: films_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.films_id_seq', 6, true);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
