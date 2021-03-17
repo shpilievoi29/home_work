@@ -10,8 +10,7 @@ class Element:
             return 'solid'
         elif t > self.t_gas:
             return 'gas'
-        else:
-            return 'liquid'
+        return 'liquid'
 
 
 
@@ -35,4 +34,4 @@ class Iron(Element):
 
 elem= Iron()
 
-print(elem.agrigate_state(1460, 'f'))
+print(elem.agrigate_state(2000, 't'))
