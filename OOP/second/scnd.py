@@ -1,24 +1,22 @@
-#from datetime import date, timedelta
-
-#now = date.today()
-#month_start = date(now.year, now.month, 1)
-
-#weekend = [5, 6]
-
-#diff = (now - month_start).days + 1
+from datetime import date, timedelta
+class Employee:
 
 
-#day_count = 0
-
-#for day in range(diff):
-    #if (month_start + timedelta(day)).weekday() not in weekend:
-        #day_count += 1
-
-
-
-
-class Employee:    
-     
+    
+    now = date.today()
+    month_start = date(now.year, now.month, 1)
+    weekend = [5, 6]
+    diff = (now - month_start).days + 1
+    day_count = 0
+    for day in range(diff):
+        if (month_start + timedelta(day)).weekday() not in weekend:
+            day_count += 1   
+    
+    
+          
+    
+    
+    
     def __init__(self, name, salary_day, email,position):
         self.name = name
         self.email = email
@@ -27,15 +25,15 @@ class Employee:
     def ework(self):
         return "I come to the office"
 
-    def check_salary(self, day):
-        salary = self.salary_day * day
+    def check_salary(self,day_count):
+        salary = self.salary_day * day_count
         return salary
 
     
     
     
     def comparison(self, other):
-      if self.salary_day> other.salary_day:
+      if self.salary_day > other.salary_day:
           return f'{self.name} earns more'
       elif self.salary_day < other.salary_day:
           return f'{other.name} earns more'
@@ -50,8 +48,9 @@ vasia = Employee('Vasia', 200, 'vasia@bestcoder.ch', 'programmer' )
 lenin = Employee('Ilich', 500, 'grib@yatakdumayu.ru','recruiter')
 curt = Employee('Cobein', 180, 'ineedagun@bang.us', 'recruiter')
 adic = Employee('Adidas', 350 , 'antarctida@alemania.zik', 'programmer')
-print(vera.check_salary(4))
+
 print(Employee.comparison(igor,vera))
+print(Employee.check_salary(igor,Employee.day_count))
 
 
 
@@ -100,7 +99,7 @@ class Programmer(Employee):
         return ' probably they are equal '
 
     
-    def __add__ (self, other):
+    def __add__(self, other):
         name = 'Alex'
         salary_day = 1200
         email = 'best@best,be'
@@ -113,6 +112,7 @@ sasha = Programmer('Sasha', 130, 'sasha@gmai.com', 'programmer' , ['Python'])
 vasia = Programmer('Vasia', 200, 'vasia@bestcoder.ch', 'programmer', [ 'PHP', 'C#'] )
 adic = Programmer('Adidas', 350 , 'antarctida@alemania.zik', 'programmer',['Java'])
 
-print(Programmer.comparison_stack(igor,adic)) 
+print(Programmer.comparison_stack(igor,vasia)) 
 print(Recruiter.work(self=lenin))
 print(Programmer.work(self=igor))
+print(igor.__dict__)
