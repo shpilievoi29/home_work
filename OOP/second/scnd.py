@@ -101,12 +101,12 @@ class Programmer(Employee):
 
     
     def __add__ (self, other):
-        self.name = 'Alex'
-        self.salary_day = 1200
-        self.email = 'best@best,be'
-        self.position ="programmer"
-        self.tech_stack= ([self.tech_stack, other.tech_stack])
-        return alex( name:str,salary_day:int,email:str,position:str,tech_stack:list)
+        name = 'Alex'
+        salary_day = 1200
+        email = 'best@best,be'
+        position ="programmer"
+        tech_stack = {self.tech_stack + other.tech_stack}
+        return Programmer(name, salary_day, email, position,tech_stack)
 
 igor = Programmer('Igor', 1000, 'igor@gmail.com','programmer',['JS', 'Pyton', 'Delphi'])
 sasha = Programmer('Sasha', 130, 'sasha@gmai.com', 'programmer' , ['Python'])
